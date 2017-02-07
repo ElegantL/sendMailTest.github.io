@@ -89,7 +89,7 @@
 					<li><span>联系地址：</span><input id="address" type="text"></li>
 					<li><span>公司名称：</span><input id="company" type="text"></li>
 					<li><span>公司地址：</span><input id="companyAddress" type="text"></li>
-					<li class="final"><span>留言订单内容：</span><textarea ></textarea></li>
+					<li class="final"><span>留言或订单内容：</span><textarea id="message"></textarea></li>
 				</ul>
 				<button type="button" onclick="sendMail()">发送</button>
 			</form>
@@ -103,13 +103,15 @@
 						number = $('#number').val(),
 						address = $('#address').val(),
 						company = $('#company').val(),
-						companyAddress = $('#companyAddress').val();
+						companyAddress = $('#companyAddress').val(),
+						message = $('#message').val();
 				var con = '联系人：' + userName +
 						'；电子邮件：' + userMail +
 						'；手机号码：' +	number +
 						'；联系地址：' + address +
 						'；公司名称：' + company +
-						'；公司地址：' + companyAddress;
+						'；公司地址：' + companyAddress +
+						'；留言或订单内容：' + message;
 				console.log(con);
 				$.post('index.php',{
 					sub: sub,
