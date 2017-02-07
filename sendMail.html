@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.clearfix:after {
+				content: ".";
+				visibility: hidden;
+				display: block;
+				height: 0;
+				clear: both;
+			}
+			.clearfix{
+				*zoom: 1;
+			}
+			ul{
+				list-style: none;
+			}
+			form{
+				width: 500px;
+				margin: 50px auto;
+				border: 1px solid #ddd;
+			}
+			ul{
+				width: 440px;
+				padding: 30px;
+			}
+			ul li{
+				float: left;
+				width: 440px;
+				height: 45px;
+				margin-bottom: 20px;
+			}
+			li span{
+				float: left;
+				width: 120px;
+				height: 45px;
+				line-height: 45px;
+			}
+			li input{
+				float: left;
+				width: 295px;
+				height: 43px;
+				padding-left: 15px;
+				border: 1px solid #ddd;
+				line-height: 43px;
+				vertical-align: middle;
+			}
+			.final{
+				height: 120px;
+			}
+			.final textarea{
+				float: left;
+				width: 295px;
+				height: 108px;
+				padding-top: 10px;
+				padding-left: 15px;
+				border: 1px solid #ddd;
+				resize: none;
+			}
+			button{
+				float: right;
+				width: 100px;
+				height: 40px;
+				margin-right: 38px;
+				margin-bottom: 30px;
+				border: 1px solid #ddd;
+				background-color: #fff;
+			}
+			button:hover{
+				cursor: pointer;
+				color: #fff;
+				background-color: #999;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="content">
+			<form class="clearfix" action="">
+				<ul class="clearfix">
+					<li><span>联系人：</span><input id="userName" type="text"></li>
+					<li><span>电子邮件：</span><input id="userMail" type="text"></li>
+					<li><span>手机号码：</span><input id="number" type="text"></li>
+					<li><span>联系地址：</span><input id="address" type="text"></li>
+					<li><span>公司名称：</span><input id="company" type="text"></li>
+					<li><span>公司地址：</span><input id="companyAddress" type="text"></li>
+					<li class="final"><span>留言订单内容：</span><textarea ></textarea></li>
+				</ul>
+				<button type="button" onclick="sendMail()">发送</button>
+			</form>
+		</div>
+		<script src="js/jquery-1.7.2.min.js"></script>
+		<script>
+			function sendMail() {
+				var sub = $('#userName').val() + '的留言',
+						userName = $('#userName').val(),
+						userMail = $('#userMail').val(),
+						number = $('#number').val(),
+						address = $('#address').val(),
+						company = $('#company').val(),
+						companyAddress = $('#acompanyAddress').val();
+				var con = '联系人：' + userName +
+						'；电子邮件：' + userMail +
+						'；手机号码：' +	number +
+						'；联系地址：' + address +
+						'；公司名称：' + company +
+						'；公司地址：' + companyAddress;
+				console.log(con);
+				$.post('index.php',{
+					sub: sub,
+					con: con
+				},function (data) {
+					if (data=='Message has been sent.'){
+						alert('发送成功');
+					}else{
+						alert('发送失败');
+					}
+				});
+			}
+		</script>
+	</body>
+</html>
