@@ -81,7 +81,7 @@
 	</head>
 	<body>
 		<div id="content">
-			<form class="clearfix" action="">
+			<form class="clearfix">
 				<ul class="clearfix">
 					<li><span>联系人：</span><input id="userName" type="text"></li>
 					<li><span>电子邮件：</span><input id="userMail" type="text"></li>
@@ -113,7 +113,7 @@
 						'；公司地址：' + companyAddress +
 						'；留言或订单内容：' + message;
 				console.log(con);
-				$.post('index.php',{
+				$.post('sendMail.php',{
 					sub: sub,
 					con: con
 				},function (data) {
